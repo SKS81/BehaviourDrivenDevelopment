@@ -5,6 +5,7 @@ HELP.md
 build/
 .idea/
 driver/
+bug/
 
 ### STS ###
 .apt_generated
