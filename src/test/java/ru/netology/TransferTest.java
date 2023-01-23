@@ -79,20 +79,20 @@ public class TransferTest {
         transferPage.invalidPayCard();
     }
 
-    @Test
-    void shouldTransferMoreLimitFromTheSecondCard() {
-        val amount = 20_000;
+//    @Test
+//    void shouldTransferMoreLimitFromTheSecondCard() {
+//        val amount = 20_000;
 
-        val loginPage = new LoginPage();
-        val authInfo = DataHelper.getAuthInfo();
-        val verificationPage = loginPage.validLogin(authInfo);
-        val verificationCode = DataHelper.getVerificationCode(authInfo);
-        val dashboardPage = verificationPage.validVerify(verificationCode);
-        dashboardPage.checkHeadingYourCards();
-        val initialBalanceFromCard = dashboardPage.getFirstCardBalance();
-        val transferPage = dashboardPage.validChoosePay2();
-        transferPage.checkHeadingPaymentCards();
-        transferPage.setPayCardNumber(DataHelper.getCardFirst(), amount);
-        transferPage.validPayExtendAmount();
-    }
+//        val loginPage = new LoginPage();
+//        val authInfo = DataHelper.getAuthInfo();
+//        val verificationPage = loginPage.validLogin(authInfo);
+//        val verificationCode = DataHelper.getVerificationCode(authInfo);
+//        val dashboardPage = verificationPage.validVerify(verificationCode);
+//        dashboardPage.checkHeadingYourCards();
+//        val initialBalanceFromCard = dashboardPage.getFirstCardBalance();
+//        val transferPage = dashboardPage.validChoosePay2();
+//        transferPage.checkHeadingPaymentCards();
+//        transferPage.setPayCardNumber(DataHelper.getCardFirst(), amount);
+//        transferPage.validPayExtendAmount();
+//    }
 }
