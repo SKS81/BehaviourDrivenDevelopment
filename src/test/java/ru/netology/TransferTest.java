@@ -16,7 +16,7 @@ public class TransferTest {
 
     @Test
     void shouldTransferFromSecondToFirstCard() {
-        val amount = 1000;
+        val amount = 2000;
         val loginPage = new LoginPage();
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
@@ -28,8 +28,6 @@ public class TransferTest {
         val transferPage = dashboardPage.validChoosePay1();
         transferPage.checkHeadingPaymentCards();
         transferPage.setPayCardNumber(DataHelper.getCardSecond(), amount);
-        //val dashboardPage1 = verificationPage.validVerify("12345");
-
         val actual = dashboardPage.getFirstCardBalance();
         val expected = initialBalanceToCard + amount;
         val actual2 = dashboardPage.getSecondCardBalance();
@@ -40,8 +38,7 @@ public class TransferTest {
 
     @Test
     void shouldTransferFromFirstToSecondCard() {
-        val amount = 5000;
-
+        val amount = 3000;
         val loginPage = new LoginPage();
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
@@ -53,13 +50,10 @@ public class TransferTest {
         val transferPage = dashboardPage.validChoosePay2();
         transferPage.checkHeadingPaymentCards();
         transferPage.setPayCardNumber(DataHelper.getCardFirst(), amount);
-        //val dashboardPage1 = transferPage.validPayCard();
-
         val actualFirstCard = dashboardPage.getFirstCardBalance();
         val expectedFirstCard = initialBalanceFromCard - amount;
         val actualSecondCard = dashboardPage.getSecondCardBalance();
         val expectedSecondCard = initialBalanceToCard + amount;
-
         assertEquals(expectedFirstCard, actualFirstCard);
         assertEquals(expectedSecondCard, actualSecondCard);
     }
@@ -67,7 +61,6 @@ public class TransferTest {
     @Test
     void shouldCheckTheTransferFromAnInvalidCard() {
         val amount = 3000;
-
         val loginPage = new LoginPage();
         val authInfo = DataHelper.getAuthInfo();
         val verificationPage = loginPage.validLogin(authInfo);
@@ -80,20 +73,20 @@ public class TransferTest {
         transferPage.invalidPayCard();
     }
 
-//    @Test
-//    void shouldTransferMoreLimitFromTheSecondCard() {
-//        val amount = 20_000;
-//
-//        val loginPage = new LoginPage();
-//        val authInfo = DataHelper.getAuthInfo();
-//        val verificationPage = loginPage.validLogin(authInfo);
-//        val verificationCode = DataHelper.getVerificationCode(authInfo);
-//        val dashboardPage = verificationPage.validVerify(verificationCode);
-//        dashboardPage.checkHeadingYourCards();
-//        val initialBalanceFromCard = dashboardPage.getFirstCardBalance();
-//        val transferPage = dashboardPage.validChoosePay2();
-//        transferPage.checkHeadingPaymentCards();
-//        transferPage.setPayCardNumber(DataHelper.getCardFirst(), amount);
-//        transferPage.validPayExtendAmount();
-//    }
+    @Test
+    void shouldTransferMoreLimitFromTheSecondCard() {
+        val amount = 20_000;
+
+        val loginPage = new LoginPage();
+        val authInfo = DataHelper.getAuthInfo();
+        val verificationPage = loginPage.validLogin(authInfo);
+        val verificationCode = DataHelper.getVerificationCode(authInfo);
+        val dashboardPage = verificationPage.validVerify(verificationCode);
+        dashboardPage.checkHeadingYourCards();
+        val initialBalanceFromCard = dashboardPage.getFirstCardBalance();
+        val transferPage = dashboardPage.validChoosePay2();
+        transferPage.checkHeadingPaymentCards();
+        transferPage.setPayCardNumber(DataHelper.getCardFirst(), amount);
+        transferPage.validPayExtendAmount();
+    }
 }

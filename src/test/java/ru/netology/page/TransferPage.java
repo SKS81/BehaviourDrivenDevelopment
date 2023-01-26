@@ -22,11 +22,7 @@ public class TransferPage {
         from.setValue(String.valueOf(card));
         buttonPay.click();
     }
-
-//    public DashboardPage validPayCard() {
-//        return new DashboardPage();
-//    }
-
+    
     public void invalidPayCard() {
         $("[data-test-id=error-notification] .notification__content").shouldHave(text("Произошла ошибка"));
     }
