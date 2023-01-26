@@ -28,10 +28,11 @@ public class TransferTest {
         val transferPage = dashboardPage.validChoosePay1();
         transferPage.checkHeadingPaymentCards();
         transferPage.setPayCardNumber(DataHelper.getCardSecond(), amount);
-        val dashboardPage1 = transferPage.validPayCard();
-        val actual = dashboardPage1.getFirstCardBalance();
+        //val dashboardPage1 = verificationPage.validVerify("12345");
+
+        val actual = dashboardPage.getFirstCardBalance();
         val expected = initialBalanceToCard + amount;
-        val actual2 = dashboardPage1.getSecondCardBalance();
+        val actual2 = dashboardPage.getSecondCardBalance();
         val expected2 = initialBalanceFromCard - amount;
         assertEquals(expected, actual);
         assertEquals(expected2, actual2);
@@ -52,11 +53,11 @@ public class TransferTest {
         val transferPage = dashboardPage.validChoosePay2();
         transferPage.checkHeadingPaymentCards();
         transferPage.setPayCardNumber(DataHelper.getCardFirst(), amount);
-        val dashboardPage1 = transferPage.validPayCard();
+        //val dashboardPage1 = transferPage.validPayCard();
 
-        val actualFirstCard = dashboardPage1.getFirstCardBalance();
+        val actualFirstCard = dashboardPage.getFirstCardBalance();
         val expectedFirstCard = initialBalanceFromCard - amount;
-        val actualSecondCard = dashboardPage1.getSecondCardBalance();
+        val actualSecondCard = dashboardPage.getSecondCardBalance();
         val expectedSecondCard = initialBalanceToCard + amount;
 
         assertEquals(expectedFirstCard, actualFirstCard);
@@ -82,7 +83,7 @@ public class TransferTest {
 //    @Test
 //    void shouldTransferMoreLimitFromTheSecondCard() {
 //        val amount = 20_000;
-
+//
 //        val loginPage = new LoginPage();
 //        val authInfo = DataHelper.getAuthInfo();
 //        val verificationPage = loginPage.validLogin(authInfo);
